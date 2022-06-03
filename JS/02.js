@@ -12,6 +12,7 @@ function sketch2(id) {
     let vel;
     let stella;
 
+    // preset
     if(sketches[id].firstTime == true) {
         sketches[id].slider1.value = 50;
         sketches[id].slider2.value = 50;
@@ -24,7 +25,7 @@ function sketch2(id) {
         sketches[id].firstTime = false;
     }
 
-    // preset
+    
     count = mapRange(sketches[id].slider1.value, 0, 100, 1, 160);
     vel = mapRange(sketches[id].slider2.value, 0, 100, 0.1, 2);
     stella = mapRange(sketches[id].slider3.value, 0, 100, 0.5, 0.01);
@@ -79,7 +80,7 @@ function sketch2(id) {
     class Agent {
         constructor(x, y) {
             this.pos = new Vector(x, y);
-            this.vel = new Vector(randomRange(-baseV, baseV), randomRange(-baseV, baseV));
+            this.vel = new Vector(randomRange(-baseV, baseV)*width*0.002, randomRange(-baseV, baseV)*height*0.002);
             this.radius = randomRange(1, 6);
             this.checkradius = this.radius * 5;
 
@@ -103,8 +104,8 @@ function sketch2(id) {
         }
 
         update() {
-            this.pos.x += this.vel.x*0.005*width;
-            this.pos.y += this.vel.y*0.005*height;
+            this.pos.x += this.vel.x*0.002*width;
+            this.pos.y += this.vel.y*0.002*height;
         }
 
         bounce(width, height) {
