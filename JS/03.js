@@ -73,6 +73,7 @@ function sketch3(id) {
                     context.globalAlpha = 0.3;
                     context.ellipse(0, 0, 3 * this.radius /2, 2 * this.radius /2, degToRad(-galaxyAngle), 0, 2 * Math.PI);
                     context.strokeStyle = palette.color2;
+                    context.lineWidth = 1*width/500;
                     context.stroke();
                 context.closePath();
             context.restore();
