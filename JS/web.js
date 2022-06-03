@@ -6,7 +6,7 @@ function loadCarrousel() {
         document.querySelector("#carrousel").innerHTML += `
             <div class="canvasContainer" id="sketch-${i}">
                 <div class="canvasTitle">
-                    <h3>Sketch ${i+1}</h3>
+                    <h3>Sketch ${i + 1}</h3>
                     <div class="canvasControls">
                         <a class="canvasButton" id="reloadButton" onClick="sketches[${i}].reload()"><div></div></a>
                         <a class="canvasButton" id="presetButton" onClick="sketches[${i}].preset()"><div></div></a>
@@ -46,10 +46,10 @@ class Palette {
     }
 }
 
-let palette = new(Palette)("#556600", "#ffffff", "#111111");
+let palette = new (Palette)("#556600", "#ffffff", "#111111");
 
 
-document.querySelector("#palette").addEventListener("change", function() {
+document.querySelector("#palette").addEventListener("change", function () {
     palette.color1 = document.getElementById("color1").value;
     palette.color2 = document.getElementById("color2").value;
     palette.color3 = document.getElementById("color3").value;
@@ -61,6 +61,14 @@ document.querySelector("#palette").addEventListener("change", function() {
     for (let i = 0; i < sketchCount; i++) {
         clearInterval(sketches[i].animation);
         sketches[i].stopped = false;
-        sketches[i].play(); 
+        sketches[i].play();
+    }
+});
+
+window.addEventListener("blur", function () {
+    for (let i = 0; i < sketchCount; i++) {
+        if(sketches[i].isActive) {
+            sketches[i].toggleActive();
+        }
     }
 });
