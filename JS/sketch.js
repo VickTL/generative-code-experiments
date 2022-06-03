@@ -7,6 +7,7 @@ class Sketch {
         this.isActive;
         this.animation;
         this.stopped = false;
+        this.firstTime = true;
 
         this.canvasContainer = document.getElementById("sketch-"+this.id);
         this.canvas = document.querySelector("#sketch-"+this.id+" canvas");
@@ -50,6 +51,42 @@ class Sketch {
             default:
                 console.log("Sketch-"+this.id+" not found!");
         }
+    }
+
+    fullScreen() {
+        if(this.isActive) this.toggleActive();
+
+        document.querySelector("#fullScreen").innerHTML = `
+            <a id="quitFullScreen" onClick="sketches[${this.id}].quitFullScreen()"></a>
+            <div class="canvasContainer" id="sketch-${this.id}">
+                <canvas width="2000" height="2000"></canvas>
+            </div>
+        `
+
+        document.querySelector("#fullScreen").style.display = "block";
+        if(window.innerHeight > window.innerWidth) {
+            document.querySelector("#fullScreen canvas").style.height = "90vw";
+            document.querySelector("#fullScreen canvas").style.width = "90vw";
+        }
+        else {
+            document.querySelector("#fullScreen canvas").style.height = "90vh";
+            document.querySelector("#fullScreen canvas").style.width = "90vh";
+        }
+
+        this.canvas = document.querySelector("#fullScreen canvas");
+        this.context = this.canvas.getContext("2d");
+
+        if(!this.isActive) this.toggleActive();
+    }
+
+    quitFullScreen() {
+        document.querySelector("#fullScreen").style.display = "none";
+
+        this.canvas = document.querySelector("#sketch-"+this.id+" canvas");
+        this.context = this.canvas.getContext("2d");
+
+
+        this.play();
     }
 }
 

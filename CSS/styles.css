@@ -7,7 +7,6 @@
 }
 
 html {
-    height: 100vh;
 }
 
 body {
@@ -16,8 +15,6 @@ body {
     font-family: 'Poppins', sans-serif;
     margin: 0px;
     padding: 0px;
-
-    height: 100vh;
 }
 
 nav {
@@ -49,6 +46,7 @@ h1 {
     flex-direction: row;
 
     padding: 0 5%;
+    margin-bottom: 50px;
 }
 
 .colorSel {
@@ -166,6 +164,59 @@ canvas {
     /* 2 */
     border: 1px solid white;
     /* 1 */
+}
+
+#fullScreen {
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 100;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100vw;
+    height: 100vh;
+
+    display: none;
+}
+
+#fullScreen .canvasContainer {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+
+#fullScreen canvas {
+    background:rgb(56, 56, 56);
+    margin: 0;
+}
+
+#quitFullScreen {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+
+    background-image: url(../icon/exit.png);
+    background-size: cover;
+}
+
+@media screen and (max-width: 1300px) {
+    #carrousel {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        flex-direction: column;
+    
+        flex-wrap: wrap;
+    }
+    
 }
 
 @media screen and (max-width: 650px) {

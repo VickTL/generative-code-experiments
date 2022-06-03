@@ -4,14 +4,28 @@ function sketch1(id) {
     let width = canvas.width;
     let height = canvas.height;
 
+    let smallSize;
+
+    if(width < height) { smallSize = width; bigSize = height; }
+    else { smallSize = height; bigSize = width; }
+
+    let count;
+    let chance;
+    let time;
+
     // Preset
-    sketches[id].slider1.value = 10;
-    let count = Math.floor(mapRange(sketches[id].slider1.value, 0, 100, 6, 60));
-    let chance = mapRange(sketches[id].slider2.value, 0, 100, 0, 1);
-    sketches[id].slider3.value = 60;
-    let time = mapRange(sketches[id].slider3.value, 0, 100, 300, 1);
+    if(sketches[id].firstTime == true) {
+        sketches[id].slider1.value = 10;
+        sketches[id].slider2.value = 50;
+        sketches[id].slider3.value = 60;
+        
 
+        sketches[id].firstTime = false;
+    }
 
+    count = Math.floor(mapRange(sketches[id].slider1.value, 0, 100, 6, 60));
+    chance = mapRange(sketches[id].slider2.value, 0, 100, 0, 1);
+    time = mapRange(sketches[id].slider3.value, 0, 100, 300, 1);
 
     // Sliders
     sketches[id].slider1.oninput = function () {
@@ -44,8 +58,8 @@ function sketch1(id) {
 
         for (let i = 0; i < count; i++) {
             for (let j = 0; j < count; j++) {
-                let off = width / 30;
-                let total = (width-(2*off));
+                let off = bigSize / 30;
+                let total = (smallSize-(2*off));
                 let size = total/(count+1);
                 let gap = size/count;
 

@@ -8,11 +8,26 @@ function sketch2(id) {
     let width = canvas.width;
     let height = canvas.height;
 
+    let count;
+    let vel;
+    let stella;
+
+    if(sketches[id].firstTime == true) {
+        sketches[id].slider1.value = 50;
+        sketches[id].slider2.value = 50;
+        sketches[id].slider3.value = 1;
+
+        context.fillStyle = palette.color3;
+        context.globalAlpha = 1;
+        context.fillRect(0, 0, width, height);
+
+        sketches[id].firstTime = false;
+    }
+
     // preset
-    let vel = mapRange(sketches[id].slider1.value, 0, 100, 0.1, 2);
-    let count = 80;
-    sketches[id].slider3.value = 0;
-    let stella = 1; //mapRange(sketches[id].slider3.value, 0, 100, 0.5, 0.001);
+    count = mapRange(sketches[id].slider1.value, 0, 100, 1, 160);
+    vel = mapRange(sketches[id].slider2.value, 0, 100, 0.1, 2);
+    stella = mapRange(sketches[id].slider3.value, 0, 100, 0.5, 0.01);
 
     sketches[id].slider1.oninput = function () {
         if(!sketches[id].isActive) sketches[id].toggleActive();
@@ -72,7 +87,9 @@ function sketch2(id) {
         }
 
         draw(context) {
-            context.fillStyle = palette.color1;//blend(palette.color1, palette.color2, this.color);
+            if(this.color > 0.5) context.fillStyle = palette.color1;
+            else context.fillStyle = palette.color2;
+            //blend(palette.color1, palette.color2, this.color);
             context.globalAlpha = this.color;
 
             context.save();
@@ -86,8 +103,8 @@ function sketch2(id) {
         }
 
         update() {
-            this.pos.x += this.vel.x;
-            this.pos.y += this.vel.y;
+            this.pos.x += this.vel.x*0.005*width;
+            this.pos.y += this.vel.y*0.005*height;
         }
 
         bounce(width, height) {
@@ -119,7 +136,7 @@ function sketch2(id) {
     }
 
     function animate() {
-        context.fillStyle = palette.color2;
+        context.fillStyle = palette.color3;
         context.globalAlpha = stella;
         context.fillRect(0, 0, width, height);
 

@@ -5,16 +5,26 @@ function sketch3(id) {
     let width = canvas.width;
     let height = canvas.height;
 
-    let planets = 5;
+    let planets;
+    let vel;
+    let galaxyAngle;
+
     let orbits = [];
     // let stars = 200;
 
-    let sun = 20;
-    let galaxyAngle = 30;
+    let sun = width*0.05;
 
-    sketches[id].slider1.value = (100/30)*planets;
-    sketches[id].slider2.value = 5;
-    sketches[id].slider3.value = 50;
+    if(sketches[id].firstTime == true) {
+        sketches[id].slider1.value = (100/30)*15;
+        sketches[id].slider2.value = 2;
+        sketches[id].slider3.value = (100/360)*30;
+
+        sketches[id].firstTime = false;
+    }
+
+    planets = Math.floor(mapRange(sketches[id].slider1.value, 0, 100, 1, 30));
+    vel = mapRange(sketches[id].slider2.value, 0, 100, 0.2, 100);
+    galaxyAngle = mapRange(sketches[id].slider3.value, 0, 100, 0, 360);
 
     sketches[id].slider1.oninput = function () {
         if(!sketches[id].isActive) sketches[id].toggleActive();
@@ -33,7 +43,7 @@ function sketch3(id) {
     sketches[id].slider2.oninput = function () {
         if(!sketches[id].isActive) sketches[id].toggleActive();
 
-        let vel = mapRange(this.value, 0, 100, 0.2, 100);
+        vel = mapRange(this.value, 0, 100, 0.2, 100);
 
         for (let i = 0; i < planets; i++) {
             orbits[i].planet.speed = vel;
@@ -51,9 +61,9 @@ function sketch3(id) {
 
     class Orbit {
         constructor() {
-            this.radius = randomRange(40, 200);
+            this.radius = randomRange(40, 200)*width*0.002;
 
-            this.planet = new Planet(this.radius, randomRange(1,15), randomRange(0, 2*Math.PI));
+            this.planet = new Planet(this.radius, randomRange(1,15)*width*0.002, randomRange(0, 2*Math.PI));
         }
 
         draw(context) {
@@ -124,8 +134,11 @@ function sketch3(id) {
         context.closePath();
 
         for (let i = 0; i < orbits.length; i++) {
-            orbits[i].planet.update();
             orbits[i].draw(context);
+        }
+
+        for (let i = 0; i < orbits.length; i++) {
+            orbits[i].planet.update();
             orbits[i].planet.draw(context);
         }
     }
