@@ -54,6 +54,8 @@ h1 {
     border: #555 solid 1px;
 
     margin: 5px;
+
+    border-radius: 2px;
 }
 
 ::-webkit-color-swatch-wrapper {
@@ -65,6 +67,8 @@ h1 {
 
 ::-webkit-color-swatch {
     border: 1px solid #000;
+
+    border-radius: 2px;
 }
 
 h2 {
