@@ -65,6 +65,7 @@ document.querySelector("#palette").addEventListener("change", function () {
     }
 });
 
+// cuando la pagina se deja de estar usando, todos paran
 window.addEventListener("blur", function () {
     for (let i = 0; i < sketchCount; i++) {
         if(sketches[i].isActive) {
