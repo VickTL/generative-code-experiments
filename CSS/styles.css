@@ -37,6 +37,9 @@ h1 {
     font-size: 2.5em;
     font-weight: 100;
     margin: 0;
+    margin-right: 200px;
+
+    line-break: loose;
 }
 
 #palette {
@@ -49,11 +52,11 @@ h1 {
 }
 
 .colorSel {
-    height: 30px;
+    height: 20px;
     width: 100%;
 
     background-color: #000;
-    border: #333 solid 1px;
+    border: #555 solid 1px;
 
     margin: 5px;
 }
@@ -84,8 +87,7 @@ h3 {
     display: flex;
     justify-content: center;
     align-items: center;
-
-    height: 80vh;
+    flex-direction: row;
 }
 
 canvas {
@@ -96,21 +98,21 @@ canvas {
 
 #carrouselContainer {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
     flex-direction: row;
-
+    
     width: 90vw;
 	overflow: hidden;
 }
 
 #carrousel {
     display: flex;
-    justify-content: space-around;
-    align-items: center;
+    justify-content: space-between;
+    align-items: flex-start;
     flex-direction: row;
 
-    overflow-x: scroll;
+    flex-wrap: wrap;
 }
 
 ::-webkit-scrollbar {
@@ -166,19 +168,22 @@ canvas {
     /* 1 */
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 650px) {
     .main {
         height: auto;
     }
 
-    #carrouselContainer {
-        width: 100vw;
-
-        display: block;
+    h1 {
+        font-size: 2em;
+        margin-right: 50px;
     }
 
     canvas {
         width: 90vw;
+    }
+
+    #palette {
+        margin-bottom: 30px;
     }
 
     #carrousel {
@@ -194,7 +199,6 @@ canvas {
     .canvasContainer {
         margin: 0;
         margin-bottom: 100px;
-
     }
     
 }
