@@ -1,22 +1,25 @@
 // HTML Gen
 const sketchCount = 3;
 
-for (let i = 0; i < sketchCount; i++) {
-    document.querySelector("#carrousel").innerHTML += `
-        <div class="canvasContainer" id="sketch-${i}">
-            <h3>Sketch ${i+1}</h3>
-            <canvas width="500" height="500" onClick="sketches[${i}].toggleActive()"></canvas>
-            <div class="sliderPack">
-                <input type="range" min="1" max="100" value="50" class="slider" id="slider1">
-                <input type="range" min="1" max="100" value="50" class="slider" id="slider2">
-                <input type="range" min="1" max="100" value="50" class="slider" id="slider3">
+function loadCarrousel() {
+    for (let i = 0; i < sketchCount; i++) {
+        document.querySelector("#carrousel").innerHTML += `
+            <div class="canvasContainer" id="sketch-${i}">
+                <h3>Sketch ${i+1}</h3>
+                <canvas width="500" height="500" onClick="sketches[${i}].toggleActive()"></canvas>
+                <div class="sliderPack">
+                    <input type="range" min="1" max="100" value="50" class="slider" id="slider1">
+                    <input type="range" min="1" max="100" value="50" class="slider" id="slider2">
+                    <input type="range" min="1" max="100" value="50" class="slider" id="slider3">
+                </div>
             </div>
-        </div>
-    `;
+        `;
+    }
 }
 
-// Carrusel
 
+// Carrusel
+loadCarrousel();
 
 
 // Paletas
