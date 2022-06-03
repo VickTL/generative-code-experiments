@@ -5,7 +5,14 @@ function loadCarrousel() {
     for (let i = 0; i < sketchCount; i++) {
         document.querySelector("#carrousel").innerHTML += `
             <div class="canvasContainer" id="sketch-${i}">
-                <h3 onClick="sketches[${i}].fullScreen()">Sketch ${i+1}</h3>
+                <div class="canvasTitle">
+                    <h3>Sketch ${i+1}</h3>
+                    <div class="canvasControls">
+                        <a class="canvasButton" id="reloadButton" onClick="sketches[${i}].reload()"><div></div></a>
+                        <a class="canvasButton" id="presetButton" onClick="sketches[${i}].preset()"><div></div></a>
+                        <a class="canvasButton" id="fullScreenButton" onClick="sketches[${i}].fullScreen()"><div></div></a>
+                    </div>
+                </div>
                 <canvas width="500" height="500" onClick="sketches[${i}].toggleActive()"></canvas>
                 <div class="sliderPack">
                     <input type="range" min="1" max="100" value="50" class="slider" id="slider1">

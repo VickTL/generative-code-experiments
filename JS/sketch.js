@@ -88,6 +88,20 @@ class Sketch {
 
         this.play();
     }
+
+    preset() {
+        if(this.isActive) this.toggleActive();
+        this.firstTime = true;
+
+        this.toggleActive();
+    }
+
+    reload() {
+        if(this.isActive) this.toggleActive();
+
+        this.toggleActive();
+    }
+
 }
 
 // Generación de Array de Sketches
