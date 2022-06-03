@@ -266,6 +266,18 @@ canvas {
     
         flex-wrap: wrap;
     }
+
+    ::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        width: 15px;
+        /* 1 */
+        height: 40px;
+        background: #fff;
+        box-shadow: -800px 0 0 800px var(--color-1);
+        /* 2 */
+        border: 1px solid white;
+        /* 1 */
+    }
     
 }
 
